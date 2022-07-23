@@ -21,7 +21,7 @@ private static NgWebDriver ngWebDrv;
 
     public static void beforeClass(){
     System.setProperty("webdriver.chrome.driver",DriversHwork10.CHROMEDRIVER_PATH);
-    driverChrome =new ChromeDriver();
+    driverChrome = SingeltonDrv.getDrvInstance();
     ngWebDrv = new NgWebDriver((JavascriptExecutor) driverChrome);
 
 
@@ -68,15 +68,16 @@ private static NgWebDriver ngWebDrv;
 
 //    4
     @Test
-    public static void T5_POMConstants()  {
+    public static void T5_POMConstants() throws InterruptedException {
         driverChrome.get("https://dgotlieb.github.io/WebCalculator/");
         System.out.println(driverChrome.findElement(By.id(Constants.button7)).getSize());
         System.out.println(driverChrome.findElement(By.id("six")).isDisplayed());
         CalculateFormula.pressEight();
+//        Thread.sleep(2000);
         CalculateFormula.pressAdd();
         CalculateFormula.pressEight();
         CalculateFormula.pressEqual();
-        int expectedResult = 16;
+        String expectedResult = "16";
         Assert.assertEquals(expectedResult,CalculateFormula.getResult());
 
 

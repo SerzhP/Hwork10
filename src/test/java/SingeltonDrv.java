@@ -6,6 +6,7 @@ public class SingeltonDrv {
 
     public static WebDriver getDrvInstance(){
         if (driver2 == null){
+            System.setProperty("webdriver.chrome.driver",DriversHwork10.CHROMEDRIVER_PATH);
             driver2 = new ChromeDriver();
         }
         return driver2;
